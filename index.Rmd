@@ -1,8 +1,8 @@
 ---
-title       : test
-subtitle    : test
+title       : ShinyPsych
+subtitle    : Programming online experiments using R and Shiny
 author      : Nathaniel Phillips
-job         : 
+job         : Basel Research Colloquium - March 16, 2017
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
@@ -11,16 +11,40 @@ mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 ---
 
-## Read-And-Delete
+## What is Shiny?
 
-1. Edit YAML front matter
-2. Write using R Markdown
-3. Use an empty line followed by three dashes to separate slides!
+- Shiny is a web application framework for R
+- From the website: Turn your analyses into interactive web applications. No HTML, CSS, or JavaScript knowledge required.
+
+```{r cookmap, fig.margin = TRUE, echo = FALSE, eval = TRUE, out.width = "70%", fig.align='center'}
+knitr::include_graphics(c("images/shinydiagram.png"))
+```
 
 --- .class #id 
+## How are Shiny Apps programmed?
 
-## Slide 2
+asdf
 
+--- .class #id 
+## How does Shiny compare to other programs?
 
+| Software| Time to Learn|Cost|Customizability | Best Suited for|
+|------:|----:|:-----|:----|:----|:----|
+|     UniPark / Qualtrics| Medium |   ?|Low | Questionnaires     |
+|     Inquisit|    Medium / Low|? | Medium | Questionnaires, Simple stimuli     |
+|     Custom HTML / JavaScript|   High|Free | Very High | Complex studies     |
+|     Shiny|    Medium / High|Free* | High | Complex, statistical stimuli     |
 
+--- .class #id 
+## Shiny Pros and Cons
 
+### Pros
+- You can integrate all of your data management using R code within the experiment.
+    - Great for dynamic experiments where stimuli depend on responses.
+- Data can be easily exported in exactly the format you want to Dropbox or via email.
+    - No need to worry about databases.
+
+### Cons
+- Crashing is, unfortunately, somewhat common.
+    - No more than 20 simultaneous users.
+- I wouldn't trust response time precision less than 500ms

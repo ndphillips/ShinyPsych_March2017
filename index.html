@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>test</title>
+  <title>ShinyPsych</title>
   <meta charset="utf-8">
-  <meta name="description" content="test">
+  <meta name="description" content="ShinyPsych">
   <meta name="author" content="Nathaniel Phillips">
   <meta name="generator" content="slidify" />
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -32,9 +32,9 @@
     <!-- LOGO SLIDE -->
         <slide class="title-slide segue nobackground">
   <hgroup class="auto-fadein">
-    <h1>test</h1>
-    <h2>test</h2>
-    <p>Nathaniel Phillips<br/></p>
+    <h1>ShinyPsych</h1>
+    <h2>Programming online experiments using R and Shiny</h2>
+    <p>Nathaniel Phillips<br/>Basel Research Colloquium - March 16, 2017</p>
   </hgroup>
   <article></article>  
 </slide>
@@ -43,14 +43,15 @@
     <!-- SLIDES -->
     <slide class="" id="slide-1" style="background:;">
   <hgroup>
-    <h2>Read-And-Delete</h2>
+    <h2>What is Shiny?</h2>
   </hgroup>
   <article data-timings="">
-    <ol>
-<li>Edit YAML front matter</li>
-<li>Write using R Markdown</li>
-<li>Use an empty line followed by three dashes to separate slides!</li>
-</ol>
+    <ul>
+<li>Shiny is a web application framework for R</li>
+<li>From the website: Turn your analyses into interactive web applications. No HTML, CSS, or JavaScript knowledge required.</li>
+</ul>
+
+<p><img src="images/shinydiagram.png" title="plot of chunk cookmap" alt="plot of chunk cookmap" width="70%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -58,10 +59,94 @@
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Slide 2</h2>
+    <h2>How are Shiny Apps programmed?</h2>
   </hgroup>
   <article data-timings="">
-    
+    <p>asdf</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>How does Shiny compare to other programs?</h2>
+  </hgroup>
+  <article data-timings="">
+    <table><thead>
+<tr>
+<th align="right">Software</th>
+<th align="right">Time to Learn</th>
+<th align="left">Cost</th>
+<th align="left">Customizability</th>
+<th align="left">Best Suited for</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="right">UniPark / Qualtrics</td>
+<td align="right">Medium</td>
+<td align="left">?</td>
+<td align="left">Low</td>
+<td align="left">Questionnaires</td>
+</tr>
+<tr>
+<td align="right">Inquisit</td>
+<td align="right">Medium / Low</td>
+<td align="left">?</td>
+<td align="left">Medium</td>
+<td align="left">Questionnaires, Simple stimuli</td>
+</tr>
+<tr>
+<td align="right">Custom HTML / JavaScript</td>
+<td align="right">High</td>
+<td align="left">Free</td>
+<td align="left">Very High</td>
+<td align="left">Complex studies</td>
+</tr>
+<tr>
+<td align="right">Shiny</td>
+<td align="right">Medium / High</td>
+<td align="left">Free*</td>
+<td align="left">High</td>
+<td align="left">Complex, statistical stimuli</td>
+</tr>
+</tbody></table>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Shiny Pros and Cons</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Pros</h3>
+
+<ul>
+<li>You can integrate all of your data management using R code within the experiment.
+
+<ul>
+<li>Great for dynamic experiments where stimuli depend on responses.</li>
+</ul></li>
+<li>Data can be easily exported in exactly the format you want to Dropbox or via email.
+
+<ul>
+<li>No need to worry about databases.</li>
+</ul></li>
+</ul>
+
+<h3>Cons</h3>
+
+<ul>
+<li>Crashing is, unfortunately, somewhat common.
+
+<ul>
+<li>No more than 20 simultaneous users.</li>
+</ul></li>
+<li>I wouldn&#39;t trust response time precision less than 500ms</li>
+</ul>
+
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -72,14 +157,26 @@
     <ul>
       <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title='Read-And-Delete'>
+        data-slide=1 title='What is Shiny?'>
          1
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='Slide 2'>
+        data-slide=2 title='How are Shiny Apps programmed?'>
          2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='How does Shiny compare to other programs?'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Shiny Pros and Cons'>
+         4
       </a>
     </li>
   </ul>
