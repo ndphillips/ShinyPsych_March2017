@@ -42,35 +42,40 @@
 
     <!-- SLIDES -->
     <slide class="" id="slide-1" style="background:;">
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
   <hgroup>
-    <h2>What is Shiny?</h2>
+    <h2>I want to program a study, what software can I use?</h2>
   </hgroup>
   <article data-timings="">
-    <ul>
-<li>Shiny is a web application framework for R</li>
-<li>From the website: Turn your analyses into interactive web applications. No HTML, CSS, or JavaScript knowledge required.</li>
+    
+<div style='float:left;width:48%;' class='centered'>
+  <ul>
+<li>Lab-based study: Use Psychopy</li>
+<li>Online study (???)
+
+<ul>
+<li>Survey software? HTML / JavaScript?</li>
+</ul></li>
 </ul>
 
-<p><img src="images/shinydiagram.png" title="plot of chunk cookmap" alt="plot of chunk cookmap" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div style='float:right;width:48%;'>
+  <p><img src="images/psychopy.gif" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="70%" style="display: block; margin: auto;" /><img src="images/cos.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="70%" style="display: block; margin: auto;" /></p>
 
+</div>
   </article>
   <!-- Presenter Notes -->
 </slide>
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>How are Shiny Apps programmed?</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>asdf</p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>How does Shiny compare to other programs?</h2>
+    <h2>Comparing online software</h2>
   </hgroup>
   <article data-timings="">
     <table><thead>
@@ -93,7 +98,7 @@
 <td align="right">Inquisit</td>
 <td align="right">Medium / Low</td>
 <td align="left">?</td>
-<td align="left">Medium</td>
+<td align="left">Medium (?)</td>
 <td align="left">Questionnaires, Simple stimuli</td>
 </tr>
 <tr>
@@ -118,6 +123,219 @@
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
+    <h2>What is Shiny?</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Shiny is a web application framework for R.</li>
+<li>From the website: Turn your analyses into interactive web applications. No HTML, CSS, or JavaScript knowledge required.</li>
+<li>Shiny applications are called &quot;Apps&quot; (aka, experiment)</li>
+</ul>
+
+<p><img src="images/shinydiagram.png" title="plot of chunk cookmap" alt="plot of chunk cookmap" width="70%" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>What is Shiny?</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;' class='centered'>
+  <ul>
+<li>Shiny was developed to let people easily make cool, interactive websites with data, not to create experiments.</li>
+<li>However, just like psychologists have appropriated the Amazon mTurk for participant recruitment, I think we can also appropriate Shiny to create online experiments.</li>
+<li>Over the past few months, I, along with Markus Steiner and Kevin Trutmann (also Janine Hoffart) have been &#39;hacking&#39; Shiny to run experiments.</li>
+</ul>
+
+</div>
+<div style='float:right;width:48%;'>
+  <p><img src="images/mturk.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="70%" style="display: block; margin: auto;" /></p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Programming a Shiny &quot;App&quot;</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Combination of standard R code, and special Shiny R functions that create and manage interactive elements.</li>
+</ul>
+
+<pre><code class="r">sliderInput(inputId = &quot;prob.est&quot;, 
+            label = &quot;What is the probability of X?&quot;, 
+            min = 0, 
+            max = 100)
+</code></pre>
+
+<p>Becomes</p>
+
+<p><img src="images/sliderexample.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" width="60%" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Programming a Shiny &quot;App&quot;</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Combination of standard R code, and special Shiny R functions that create and manage interactive elements.</li>
+</ul>
+
+<pre><code class="r">h3(&quot;I don&#39;t have to do a lot of thinking&quot;)
+radioButtons(inputId = &quot;REI_q1&quot;, 
+             label = &quot;1 = Disagree, 5 = Agree&quot;,
+             choices = list(1:5))
+</code></pre>
+
+<p>Becomes</p>
+
+<p><img src="images/radioexample.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="60%" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Programming a Shiny &quot;App&quot;</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Once a participant completes an input, the result is stored as an r object you can then use any way you&#39;d like</li>
+</ul>
+
+<pre><code class="r"># Store result in prob.est
+sliderInput(inputId = &quot;prob.est&quot;, 
+            label = &quot;What is the probability of X?&quot;, 
+            min = 0, 
+            max = 100)
+
+# Use prob.est in other code
+
+true.value &lt;- 33
+error &lt;- abs(input$prob.est - true.value)
+
+h3(&quot;Your estimate was off by &quot;, error)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Programming a Shiny &quot;App&quot;</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Randomizing stimuli order is no problem.</li>
+<li>You can write &#39;pseudo-loops&#39; to sequentially display questions or other stimuli automatically and then store sequential responses.</li>
+</ul>
+
+<pre><code class="r">rei.survey &lt;- list(
+  &quot;text&quot; = c(&quot;I don&#39;t like to have to do a lot of thinking&quot;,
+             &quot;I try to avoid situations that require thinking in depth about something&quot;,
+             &quot;I prefer to do something that challenges my thinking abilities rather than something that requires little thought&quot;,
+             &quot;I prefer complex to simple problems&quot;,
+             &quot;Thinking hard and for a long time about something gives me little satisfaction&quot;,
+             &quot;I trust my initial feelings about people&quot;,
+             &quot;I believe in trusting my hunches&quot;,
+             &quot;My initial impressions of people are almost always right&quot;,
+             &quot;When it comes to trusting people, I can usually rely on my &#39;gut feelings&#39;&quot;,
+             &quot;I can usually feel when a person is right or wrong even if I can&#39;t explain how I know&quot;))
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Example: A simple survey</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Go to ShinySurvey</h3>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Example: The BART</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Go to ShinyBART</h3>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Example: A Bandit Task</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><a href="https://econpsychbasel.shinyapps.io/ShinyBandit/">https://econpsychbasel.shinyapps.io/ShinyBandit/</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Example: An Advanced bandit task</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><a href="https://econpsychbasel.shinyapps.io/BanditGame4/">https://econpsychbasel.shinyapps.io/BanditGame4/</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Notes</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Data can automatically be uploaded to Dropbox or emailed (I&#39;m pretty sure).</li>
+<li>Group experiments are possible!</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>How to run a ShinyApp</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>In order for participants to use your App, it has to be hosted on a Shiny Server.</li>
+<li>You can run up to 5 apps for free at RStudio.</li>
+<li>3 options for advanced hosting: RStudio Pro ($900 / year), Amazon Web Services, or in-house ($4,500 / year).</li>
+<li>If there is enough interest, our IT will set up an in-house server</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
     <h2>Shiny Pros and Cons</h2>
   </hgroup>
   <article data-timings="">
@@ -129,22 +347,41 @@
 <ul>
 <li>Great for dynamic experiments where stimuli depend on responses.</li>
 </ul></li>
-<li>Data can be easily exported in exactly the format you want to Dropbox or via email.
-
-<ul>
-<li>No need to worry about databases.</li>
-</ul></li>
+<li>Data can be easily exported in exactly the format you want to Dropbox or via email.</li>
 </ul>
 
 <h3>Cons</h3>
 
 <ul>
+<li>Simple things you get for free in Survey software require extra code.
+
+<ul>
+<li>Required responses, checking for invalid responses.</li>
+</ul></li>
 <li>Crashing is, unfortunately, somewhat common.
 
 <ul>
 <li>No more than 20 simultaneous users.</li>
 </ul></li>
-<li>I wouldn&#39;t trust response time precision less than 500ms</li>
+<li>Response time measures are almost certainly not very precise
+
+<ul>
+<li>&gt;500ms is probably ok, &lt;500ms is probably not</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What&#39;s next?</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>We are currently programming and documenting standard psychology experiments in Shiny and distributing them at <a href="http://www.github.com/ndphillips/ShinyPsych">http://www.github.com/ndphillips/ShinyPsych</a>.</p></li>
+<li><p>Check out the code, play around, let us know what works and what doesn&#39;t, and contribute!</p></li>
 </ul>
 
   </article>
@@ -157,26 +394,104 @@
     <ul>
       <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title='What is Shiny?'>
+        data-slide=1 title='NA'>
          1
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='How are Shiny Apps programmed?'>
+        data-slide=2 title='I want to program a study, what software can I use?'>
          2
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='How does Shiny compare to other programs?'>
+        data-slide=3 title='Comparing online software'>
          3
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=4 title='Shiny Pros and Cons'>
+        data-slide=4 title='What is Shiny?'>
          4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='What is Shiny?'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Programming a Shiny &quot;App&quot;'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Programming a Shiny &quot;App&quot;'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Programming a Shiny &quot;App&quot;'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Programming a Shiny &quot;App&quot;'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Example: A simple survey'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Example: The BART'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Example: A Bandit Task'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Example: An Advanced bandit task'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Notes'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='How to run a ShinyApp'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Shiny Pros and Cons'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='What&#39;s next?'>
+         17
       </a>
     </li>
   </ul>
