@@ -270,8 +270,8 @@ observeEvent(input$nextq, {
 ## How to run a ShinyApp
 
 - In order for participants to use your App, it has to be hosted on a Shiny Server.
-- You can run up to 5 apps for free at RStudio.
-- 3 options for advanced hosting: RStudio Pro (\$900 / year), Amazon Web Services, or in-house ($4,500 / year).
+- You can run up to 5 apps for free at RStudio. However, you are limited to 25 active hours per month
+- 3 options for advanced hosting: RStudio Standard (\$1,100 / year), Amazon Web Services, or in-house ($4,500 / year).
 - If there is enough interest, our IT will set up an in-house server
 
 --- .class #id 
