@@ -17,14 +17,15 @@ knit        : slidify::knit2slides
 
 
 ***=left
-- Lab-based study: Use Psychopy
-- Online study (???)
-    - Survey software? HTML / JavaScript?
+- Lab-based study
+    - Psychopy (Free, open source)
+    - Presentation (Not free, not open source)
+- Online study
+    - Survey software: Unipark, Qualtrics, Inquisit (Not Free, not open source)
+    - Custom HTML / JavaScript
 
 ***=right
 <img src="images/psychopy.gif" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="70%" style="display: block; margin: auto;" /><img src="images/cos.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="70%" style="display: block; margin: auto;" />
-
-
 
 --- .class #id 
 ## Comparing online software
@@ -36,12 +37,19 @@ knit        : slidify::knit2slides
 |     Custom HTML / JavaScript|   High|Free | Very High | Complex studies     |
 |     Shiny|    Medium / High|Free* | High | Complex, statistical stimuli     |
 
+
+
+
+
+
+
 --- .class #id 
 ## What is Shiny?
 
 - Shiny is a web application framework for R.
 - From the website: Turn your analyses into interactive web applications. No HTML, CSS, or JavaScript knowledge required.
 - Shiny applications are called "Apps" (aka, experiment)
+- Shiny Example Gallery: [http://shiny.rstudio.com/gallery/](http://shiny.rstudio.com/gallery/)
 
 <img src="images/shinydiagram.png" title="plot of chunk cookmap" alt="plot of chunk cookmap" width="70%" style="display: block; margin: auto;" />
 
@@ -56,7 +64,7 @@ knit        : slidify::knit2slides
 
 ***=right
 
-<img src="images/mturk.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="50%" style="display: block; margin: auto;" /><img src="images/steiner.jpg" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="50%" style="display: block; margin: auto;" /><img src="images/kevin.jpg" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="50%" style="display: block; margin: auto;" />
+<img src="images/mturk.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="50%" style="display: block; margin: auto;" /><img src="images/steiner.jpg" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="50%" style="display: block; margin: auto;" /><img src="images/kevin.jpg" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="50%" style="display: block; margin: auto;" />
 
 
 
@@ -65,6 +73,7 @@ knit        : slidify::knit2slides
 
 - Combination of standard R code, and special Shiny R functions that create and manage interactive elements.
 - Shiny has lots of 'widgets' programmed [http://shiny.rstudio.com/gallery/widget-gallery.html](http://shiny.rstudio.com/gallery/widget-gallery.html)
+- You can copy widget code, and assign the results to an R object.
 
 
 
@@ -81,7 +90,7 @@ sliderInput(inputId = "prob.est",
 
 Becomes
 
-<img src="images/sliderexample.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" width="60%" style="display: block; margin: auto;" />
+<img src="images/sliderexample.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="60%" style="display: block; margin: auto;" />
 
 
 --- .class #id 
@@ -99,7 +108,7 @@ radioButtons(inputId = "REI_q1",
 
 Becomes
 
-<img src="images/radioexample.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="60%" style="display: block; margin: auto;" />
+<img src="images/radioexample.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="60%" style="display: block; margin: auto;" />
 
 --- .class #id 
 ## Programming a Shiny "App"
@@ -126,6 +135,59 @@ h3("Your estimate was off by ", error)
 --- .class #id 
 ## Programming a Shiny "App"
 
+- You don't program explicit pages, rather, you update what's in the display based on some criteria:
+
+
+```r
+# Definition of welcome page
+if(CurrentValues$page == "welcome") {
+  
+  h3("Welcome to the experiment"),
+   textInput(inputId = "workerid", 
+                    label = "Please enter a unique ID that no one else would use", 
+                    value = "", 
+                    placeholder = "e.g.; Cat57Door"),
+  # This displays the action putton Next.
+  actionButton(inputId = "gt_Instructions", 
+               label = "Continue to Instructions")
+  
+}
+
+observeEvent(input$gt_Instructions, {CurrentValues$page <- "instructions"})
+```
+
+--- .class #id 
+## Programming a Shiny "App"
+
+- You don't program explicit pages, rather, you update what's in the display based on some criteria:
+
+
+```r
+# Definition of instructions page
+if(CurrentValues$page == "instructions") {
+  
+  h3("Instructions"),
+  p("In this experiment, you will....."),
+  p("On the next page, you will play a practice game"),
+  # This displays the action putton Next.
+  actionButton(inputId = "gt_Practice", 
+               label = "Continue to Practice")
+}
+```
+
+
+
+
+--- .class #id 
+## Example: A simple survey
+
+
+### Go to ShinySurvey
+
+
+--- .class #id 
+## Programming a Shiny "App"
+
 - Randomizing stimuli order is no problem.
 - You can write 'pseudo-loops' to sequentially display questions or other stimuli automatically and then store sequential responses.
 
@@ -145,33 +207,45 @@ rei.survey <- list(
 ```
 
 
+--- .class #id 
+## Programming a Shiny "App"
+
+
+- You can write 'pseudo-loops' to sequentially display questions or other stimuli automatically and then store sequential responses.
+
+
+```r
+# P3) REI
+if (CurrentValues$page == "rei") {
+    list(
+      h3(paste(rei.survey$text[current.question])),
+      em(paste(rei.survey$description)),
+      radioButtons(inputId = "rei_survey", 
+                  choices = rei.survey$labels),
+      actionButton(inputId = "nextq", label = "Continue"))
+    }
+
+observeEvent(input$nextq, {
+    CurrentValues$question.num <- CurrentValues$question.num + 1
+    CurrentValues$rei <- c(CurrentValues$rei, input$rei_survey)
+  }})
+```
 
 --- .class #id 
-## Example: A simple survey
+## 3 examples
+
+| Task | Link |
+|:-----|:-----|
+|BART (Balloon analogue risk task) | Desktop |
+|Bandit task | [https://econpsychbasel.shinyapps.io/ShinyBandit/](https://econpsychbasel.shinyapps.io/ShinyBandit/) |
+|Bandit task with goals | [https://econpsychbasel.shinyapps.io/BanditGame4/](https://econpsychbasel.shinyapps.io/BanditGame4/) |
 
 
-### Go to ShinySurvey
-
---- .class #id 
-## Example: The BART
-
-### Go to ShinyBART
-
---- .class #id 
-## Example: A Bandit Task
-
-[https://econpsychbasel.shinyapps.io/ShinyBandit/](https://econpsychbasel.shinyapps.io/ShinyBandit/)
-
---- .class #id 
-## Example: An Advanced bandit task
-
-[https://econpsychbasel.shinyapps.io/BanditGame4/](https://econpsychbasel.shinyapps.io/BanditGame4/)
-
---- .class #id 
-## Notes
+### Notes
 
 - Data can automatically be uploaded to Dropbox or emailed (I'm pretty sure).
-- Group experiments are possible!
+- Group experiments are possible! (Thanks Kevin Trutmann!)
+
 
 --- .class #id 
 ## How to run a ShinyApp
@@ -187,7 +261,7 @@ rei.survey <- list(
 ### Pros
 - You can integrate all of your data management using R code within the experiment.
     - Great for dynamic experiments where stimuli depend on responses.
-- Data can be easily exported in exactly the format you want to Dropbox or via email.
+- Automatically export data in exactly the format you want to Dropbox.
 
 ### Cons
 - Simple things you get for free in Survey software require extra code.
