@@ -56,13 +56,20 @@ knit        : slidify::knit2slides
 
 ***=right
 
-<img src="images/mturk.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="70%" style="display: block; margin: auto;" />
+<img src="images/mturk.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="50%" style="display: block; margin: auto;" /><img src="images/steiner.jpg" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="50%" style="display: block; margin: auto;" /><img src="images/kevin.jpg" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="50%" style="display: block; margin: auto;" />
+
 
 
 --- .class #id 
 ## Programming a Shiny "App"
 
 - Combination of standard R code, and special Shiny R functions that create and manage interactive elements.
+- Shiny has lots of 'widgets' programmed [http://shiny.rstudio.com/gallery/widget-gallery.html](http://shiny.rstudio.com/gallery/widget-gallery.html)
+
+
+
+--- .class #id 
+## Programming a Shiny "App"
 
 
 ```r

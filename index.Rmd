@@ -60,15 +60,22 @@ knitr::include_graphics(c("images/shinydiagram.png"))
 
 ***=right
 
-```{r, fig.margin = TRUE, echo = FALSE, eval = TRUE, out.width = "70%", fig.align='center'}
-knitr::include_graphics(c("images/mturk.png"))
+```{r, fig.margin = TRUE, echo = FALSE, eval = TRUE, out.width = "50%", fig.align='center'}
+knitr::include_graphics(c("images/mturk.png", "images/steiner.jpg", "images/kevin.jpg"))
 ```
+
 
 
 --- .class #id 
 ## Programming a Shiny "App"
 
 - Combination of standard R code, and special Shiny R functions that create and manage interactive elements.
+- Shiny has lots of 'widgets' programmed [http://shiny.rstudio.com/gallery/widget-gallery.html](http://shiny.rstudio.com/gallery/widget-gallery.html)
+
+
+
+--- .class #id 
+## Programming a Shiny "App"
 
 ```{r, eval = FALSE}
 sliderInput(inputId = "prob.est", 
